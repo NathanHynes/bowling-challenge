@@ -20,14 +20,12 @@ module.exports = function(config) {
 
 
     // list of files / patterns to exclude
-    exclude: [
-    ],
+    exclude: [],
 
 
     // preprocess matching files before serving them to the browser
     // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
-    preprocessors: {
-    },
+    preprocessors: {},
 
 
     // test results reporter to use
@@ -55,7 +53,20 @@ module.exports = function(config) {
 
     // start these browsers
     // available browser launchers: https://npmjs.org/browse/keyword/karma-launcher
-    browsers: ['Chrome'],
+    browsers: ['Chrome', 'ChromeCanary'],
+    customLaunchers: {
+      // tell TravisCI to use chromium when testing
+      Chrome_travis_ci: {
+        base: 'Chrome',
+        flags: ['--no-sandbox']
+      }
+    },
+
+    // Detect if this is TravisCI running the tests and tell it to use chromium
+    if (process.env.TRAVIS) {
+      config.browsers = ['Chrome_travis_ci'];
+    }
+
 
 
     // Continuous Integration mode
