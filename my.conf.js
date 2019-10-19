@@ -55,7 +55,16 @@ module.exports = function(config) {
 
     // start these browsers
     // available browser launchers: https://npmjs.org/browse/keyword/karma-launcher
-    browsers: ['Chrome', 'ChromeCanary'],
+    browsers: ['Chrome'],
+
+    customLaunchers: {
+      // tell TravisCI to use chromium when testing
+      Chrome_travis_ci: {
+        base: 'Chrome',
+        flags: ['--no-sandbox']
+      }
+    },
+
 
 
     // Continuous Integration mode
@@ -66,4 +75,9 @@ module.exports = function(config) {
     // how many browser should be started simultaneous
     concurrency: Infinity
   })
+
+  // Detect if this is TravisCI running the tests and tell it to use chromium
+  if(process.env.TRAVIS){
+      config.browsers = ['Chrome_travis_ci'];
+  }
 }
