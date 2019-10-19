@@ -15,19 +15,17 @@ module.exports = function(config) {
 
     // list of files / patterns to load in the browser
     files: [
-      'src/*.js' , 'spec/*.js'
+      'src/*.js', 'spec/*.js'
     ],
 
 
     // list of files / patterns to exclude
-    exclude: [
-    ],
+    exclude: [],
 
 
     // preprocess matching files before serving them to the browser
     // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
-    preprocessors: {
-    },
+    preprocessors: {},
 
 
     // test results reporter to use
@@ -61,7 +59,11 @@ module.exports = function(config) {
       // tell TravisCI to use chromium when testing
       Chrome_travis_ci: {
         base: 'Chrome',
-        flags: ['--no-sandbox']
+        flags: [
+          '--disable-web-security',
+          '--disable-gpu',
+          '--no-sandbox'
+        ]
       }
     },
 
@@ -77,7 +79,7 @@ module.exports = function(config) {
   })
 
   // Detect if this is TravisCI running the tests and tell it to use chromium
-  if(process.env.TRAVIS){
-      config.browsers = ['Chrome_travis_ci'];
+  if (process.env.TRAVIS) {
+    config.browsers = ['Chrome_travis_ci'];
   }
 }
