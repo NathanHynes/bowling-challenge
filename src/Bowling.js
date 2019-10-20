@@ -22,6 +22,13 @@ Bowling.prototype.roll = function(pins) {
     this.nextFrame();
   }
 
+  if (this.isAStrike(pins)) {
+    this.frames[this.frameIndex].push(pins);
+    this.pins -= pins;
+    this.rollCount += 2;
+    return;
+  }
+
   if (this.isValidRoll(pins)) {
     this.frames[this.frameIndex].push(pins);
     this.pins -= pins;
@@ -46,4 +53,8 @@ Bowling.prototype.isValidRoll = function(pins) {
 
 Bowling.prototype.recentFrameScore = function () {
   return this.frames[this.frameIndex][0] + this.frames[this.frameIndex][1];
+};
+
+Bowling.prototype.isAStrike = function (pins) {
+  return this.frames[this.frameIndex][0] == undefined && this.pins - pins == 0;
 };

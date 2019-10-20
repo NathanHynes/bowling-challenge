@@ -30,13 +30,20 @@ describe('Bowling', function () {
       expect(bowling.pins).toEqual(6);
     });
 
-    it('only records 2 rolls per frame', function () {
+    it('only records a maximum of 2 rolls per frame', function () {
       bowling.roll(1);
       bowling.roll(2);
       expect(bowling.frames[1]).toEqual([1,2]);
       bowling.roll(3);
       bowling.roll(4);
       expect(bowling.frames[2]).toEqual([3,4]);
+    });
+
+    it('moves on to next frame if player rolls a strike', function () {
+      spyOn(bowling, 'nextFrame');
+      bowling.roll(10);
+      bowling.roll(2);
+      expect(bowling.nextFrame).toHaveBeenCalled();
     });
   });
 
@@ -88,6 +95,16 @@ describe('Bowling', function () {
       bowling.roll(2);
       bowling.roll(3);
       expect(bowling.recentFrameScore()).toEqual(5);
+    });
+  });
+
+  describe('isAStrike', function () {
+    it('returns true if roll is a strike', function () {
+      expect(bowling.isAStrike(10)).toEqual(true);
+    });
+
+    it('returns false if roll is not a strike', function () {
+      expect(bowling.isAStrike(5)).toEqual(false);
     });
   });
 });
