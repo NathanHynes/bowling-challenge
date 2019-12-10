@@ -15,7 +15,8 @@ module.exports = function(config) {
 
     // list of files / patterns to load in the browser
     files: [
-      'src/*.js' , 'spec/*.js'
+      'src/*.js',
+      'spec/*.specs.js'
     ],
 
 
@@ -25,13 +26,23 @@ module.exports = function(config) {
 
     // preprocess matching files before serving them to the browser
     // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
-    preprocessors: {},
+    preprocessors: {
+      'src/*.js': ['coverage']
+    },
 
+    plugins: [
+        require('karma-jasmine'),
+        require('karma-phantomjs-launcher'),
+        require("karma-chrome-launcher"),
+        require('karma-spec-reporter'),
+        require('karma-jasmine-html-reporter'),
+        require('karma-coverage')
+    ],
 
     // test results reporter to use
     // possible values: 'dots', 'progress'
     // available reporters: https://npmjs.org/browse/keyword/karma-reporter
-    reporters: ['progress'],
+    reporters: ['progress', 'coverage', 'spec', 'kjhtml'],
 
 
     // web server port
@@ -48,12 +59,12 @@ module.exports = function(config) {
 
 
     // enable / disable watching file and executing tests whenever any file changes
-    autoWatch: false,
+    autoWatch: true,
 
 
     // start these browsers
     // available browser launchers: https://npmjs.org/browse/keyword/karma-launcher
-    browsers: ['Chrome'],
+    browsers: ['PhantomJS'],
 
     customLaunchers: {
       // tell TravisCI to use chromium when testing
@@ -66,20 +77,25 @@ module.exports = function(config) {
         ]
       }
     },
-
-
-
     // Continuous Integration mode
     // if true, Karma captures browsers, runs the tests and exits
     singleRun: false,
 
     // Concurrency level
     // how many browser should be started simultaneous
-    concurrency: Infinity
-  })
+    concurrency: Infinity,
+    coverageReporter: {
+      includeAllSources: true,
+      dir: 'coverage/',
+      reporters: [
+        { type: "html", subdir: "html" },
+        { type: 'text-summary' }
+      ]
+    }
+  });
 
   // Detect if this is TravisCI running the tests and tell it to use chromium
   if (process.env.TRAVIS) {
     config.browsers = ['Chrome_travis_ci'];
   }
-}
+};

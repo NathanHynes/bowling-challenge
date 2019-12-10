@@ -19,12 +19,6 @@ describe('Bowling', function () {
       expect(bowling.roll(9)).toEqual('Invalid Roll!');
     });
 
-    it('increases roll count at the end of every roll', function () {
-      expect(bowling.rollCount).toEqual(0);
-      bowling.roll(2);
-      expect(bowling.rollCount).toEqual(1);
-    });
-
     it('knocks pins down', function () {
       bowling.roll(4);
       expect(bowling.pins).toEqual(6);
@@ -44,15 +38,6 @@ describe('Bowling', function () {
       bowling.roll(10);
       bowling.roll(2);
       expect(bowling.nextFrame).toHaveBeenCalled();
-    });
-  });
-
-  describe('isNextFrame', function () {
-    it('confirms when there is a next frame', function () {
-      expect(bowling.isNextFrame()).toEqual(false);
-      bowling.roll(1);
-      bowling.roll(2);
-      expect(bowling.isNextFrame()).toEqual(true);
     });
   });
 
@@ -94,7 +79,7 @@ describe('Bowling', function () {
     it('shows the score of the most recent frame', function () {
       bowling.roll(2);
       bowling.roll(3);
-      expect(bowling.recentFrameScore()).toEqual(5);
+      expect(bowling.recentFrameScore(1)).toEqual(5);
     });
   });
 
@@ -105,6 +90,32 @@ describe('Bowling', function () {
 
     it('returns false if roll is not a strike', function () {
       expect(bowling.isAStrike(5)).toEqual(false);
+    });
+  });
+
+  describe('totalScore', function () {
+    it('returns 0 if player rolls a gutter game', function () {
+      for (var i = 0; i < 20; i++) {
+        bowling.roll(0);
+      }
+      expect(bowling.totalScore()).toEqual(0);
+    });
+
+    it('returns 20 if player rolls all ones', function () {
+      for (var i = 0; i < 20; i++) {
+        bowling.roll(1);
+      }
+      expect(bowling.totalScore()).toEqual(20);
+    });
+
+    it('calculates correct score bonus when player rolls a spare', function () {
+      bowling.roll(5);
+      bowling.roll(5);
+      bowling.roll(3);
+      for (var i = 0; i < 17; i++) {
+        bowling.roll(0);
+      }
+      expect(bowling.totalScore()).toEqual(16);
     });
   });
 });
