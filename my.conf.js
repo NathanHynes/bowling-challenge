@@ -85,10 +85,11 @@ module.exports = function(config) {
     // how many browser should be started simultaneous
     concurrency: Infinity,
     coverageReporter: {
-      type : 'lcov',
       includeAllSources: true,
       dir: 'coverage/',
       reporters: [
+        { type:'lcovonly', subdir: 'lcov'},
+        { type:'json', subdir: 'json'},
         { type: "html", subdir: "html" },
         { type: 'text-summary' }
       ]
