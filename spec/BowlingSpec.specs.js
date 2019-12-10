@@ -39,6 +39,13 @@ describe('Bowling', function () {
       bowling.roll(2);
       expect(bowling.nextFrame).toHaveBeenCalled();
     });
+
+    it('returns Game Over if the game has finished', function () {
+      for (var i = 0; i < 20; i++) {
+        bowling.roll(1);
+      }
+      expect(bowling.roll(1)).toEqual("Game Over");
+    });
   });
 
   describe('isValidRoll', function () {
