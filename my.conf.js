@@ -19,9 +19,10 @@ module.exports = function(config) {
       'spec/*.specs.js'
     ],
 
-
     // list of files / patterns to exclude
-    exclude: [],
+    exclude: [
+      'src/interface.js'
+    ],
 
 
     // preprocess matching files before serving them to the browser
