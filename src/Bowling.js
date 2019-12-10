@@ -59,12 +59,13 @@ return this.frames[this.frameIndex][0] + pins == 10 && this.frames[this.frameInd
 
 Bowling.prototype.recentFrameScore = function(frameIndex) {
 
+  if(frameIndex === 10){
+    return this.frames[frameIndex].reduce(function(acc, val) { return acc + val; }, 0)
+  }
+
   var currentRolls = this._createRollArray(frameIndex);
-
   var frameTotal = this._safeRoll(this.frames[frameIndex][0]) + this._safeRoll(this.frames[frameIndex][1]);
-
   var spareBonus = this._safeRoll(currentRolls[2]);
-
   var strikeBonus = this._safeRoll(currentRolls[1]);
 
   if(this.frames[frameIndex][0] == 10){

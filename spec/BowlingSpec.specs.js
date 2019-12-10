@@ -105,6 +105,15 @@ describe('Bowling', function () {
       bowling.roll(2)
       expect(bowling.recentFrameScore(1)).toEqual(14);
     });
+
+    it('returns sum of frame if frame is 10', function () {
+      for (var i = 0; i < 20; i++) {
+        bowling.roll(1);
+      }
+
+      expect(bowling.recentFrameScore(10)).toEqual(2);
+
+    });
   });
 
   describe('isAStrike', function () {
