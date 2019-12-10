@@ -91,6 +91,7 @@ module.exports = function(config) {
         { type:'lcovonly', subdir: 'lcov'},
         { type:'json', subdir: 'json'},
         { type: "html", subdir: "html" },
+        { type: 'cobertura', subdir: 'cobertura' },
         { type: 'text-summary' }
       ]
     }
