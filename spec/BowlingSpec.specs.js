@@ -134,5 +134,12 @@ describe('Bowling', function () {
       }
       expect(bowling.totalScore()).toEqual(26);
     });
+
+    it('calculates 300 for the perfect game', function () {
+      for (var i = 0; i < 12; i++) {
+        bowling.roll(10);
+      }
+      expect(bowling.totalScore()).toEqual(300);
+    });
   });
 });
