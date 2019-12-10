@@ -98,6 +98,13 @@ describe('Bowling', function () {
       bowling.roll(2);
       expect(bowling.recentFrameScore(9)).toEqual(12);
     });
+
+    it('calculates frame bonus correctly for strike', function () {
+      bowling.roll(10)
+      bowling.roll(2)
+      bowling.roll(2)
+      expect(bowling.recentFrameScore(1)).toEqual(14);
+    });
   });
 
   describe('isAStrike', function () {
