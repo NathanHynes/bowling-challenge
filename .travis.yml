@@ -6,5 +6,8 @@ services:
   - xvfb
 before_install:
     - export DISPLAY=:99.0
+    - pip install --user codecov
 before_script:
     - npm install
+after_success:
+    - codecov

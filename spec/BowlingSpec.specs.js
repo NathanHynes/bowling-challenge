@@ -124,5 +124,15 @@ describe('Bowling', function () {
       }
       expect(bowling.totalScore()).toEqual(16);
     });
+
+    it('calculates correct score bonus when player rolls a strike', function () {
+      bowling.roll(10);
+      bowling.roll(5);
+      bowling.roll(3);
+      for (var i = 0; i < 16; i++) {
+        bowling.roll(0);
+      }
+      expect(bowling.totalScore()).toEqual(26);
+    });
   });
 });
