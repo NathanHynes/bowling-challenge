@@ -1,3 +1,5 @@
+[![codecov](https://codecov.io/gh/NathanHynes/bowling-challenge/branch/master/graph/badge.svg)](https://codecov.io/gh/NathanHynes/bowling-challenge)
+[![Build Status](https://travis-ci.org/NathanHynes/bowling-challenge.svg?branch=master)](https://travis-ci.org/NathanHynes/bowling-challenge)
 
 Bowling Challenge
 =================
