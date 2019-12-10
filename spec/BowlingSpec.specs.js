@@ -88,6 +88,16 @@ describe('Bowling', function () {
       bowling.roll(3);
       expect(bowling.recentFrameScore(1)).toEqual(5);
     });
+
+    it('calculates frame bonus correctly for spare', function () {
+      for (var i = 0; i < 16; i++) {
+        bowling.roll(0);
+      }
+      bowling.roll(5);
+      bowling.roll(5);
+      bowling.roll(2);
+      expect(bowling.recentFrameScore(9)).toEqual(12);
+    });
   });
 
   describe('isAStrike', function () {
