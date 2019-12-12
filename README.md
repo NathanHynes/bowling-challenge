@@ -79,9 +79,9 @@ In the image below you can find some score examples.
 
 More about ten pin bowling here: http://en.wikipedia.org/wiki/Ten-pin_bowling
 
+## Approach
+My approach when starting this challenge was to create user stories to help break down the task and provide small logical steps I could work on to solve the bigger problem. Being my first real crack at a simple Javascript/JQuery app it seemed quite daunting at first, however by breaking down the challenge into smaller problems a clear structure for the program emerged. Once I got the app working correctly I went about refactoring the code to clean it up and break down large methods into smaller methods to adhere to Single Responsibility Principles. I then went about setting up a Jquery file so a user had a clean interface to use the program.
 
+## Review. 
 
-* All tests passing
-* The code is elegant: every class has a clear responsibility, methods are short etc.
-
-Reviewers will potentially be using this [code review rubric](docs/review.md).  Note that referring to this rubric in advance may make the challenge somewhat easier.  You should be the judge of how much challenge you want.
+I thoroughly enjoyed this challenge and it was a great introduction to JS. I particuarly enjoyed learning how to use Jasmine to test Javascript code. If I was to do this task again I would split out some of the methods and code into other classes as this would rather refactor and help clean up the code plus making it more maintainable and extensible. I would also deploy this to a Node server to make it more accessible for users.
