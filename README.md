@@ -13,9 +13,9 @@ Bowling Challenge
 * Pins are reset after each frame.
 
 ## How to use.
-1. git clone.
-2. npm install.
-3. npm test.
+1. `git clone`
+2. `npm install`
+3. `npm test`
 4. open index.html file in browser to use program.
 
 ## User Stories 
